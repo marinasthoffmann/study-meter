@@ -9,8 +9,8 @@ export default function Item({ task, time, selected, done, id, selectTask }: Pro
 
     return (
         <li 
-            className={`${style.item} ${selected ? style.selectedItem: ''}`} 
-            onClick={() => selectTask(
+            className={`${style.item} ${selected ? style.selectedItem: ''} ${done? style.completedItem : ''}`} 
+            onClick={() => !done && selectTask(
                 {
                     task,
                     time,
@@ -21,6 +21,7 @@ export default function Item({ task, time, selected, done, id, selectTask }: Pro
         )}>
             <h3>{task}</h3>
             <span>{time}</span>
+            {done && <span className={style.completed} aria-label='done task'></span>}
         </li>
     )
 }
