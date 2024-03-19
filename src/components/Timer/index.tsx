@@ -19,13 +19,22 @@ export default function Timer({ selected } : Props) {
         }        
     }, [selected]);
 
+    function countdown(count: number = 0) {
+        setTimeout(() => {
+            if(count > 0) {
+                setTime(count - 1);
+                return countdown(count - 1);
+            }
+        }, 1000)
+    }
+
     return(
         <div className={style.timer}>
             <p className={style.title}>Choose a task and start the timer!</p>        
             <div className={style.timepieceWrapper}>
                 <Timepiece time={time}/>
             </div>
-            <Button>
+            <Button onClick={() => countdown(time)}>
                 Start
             </Button>
         </div>
